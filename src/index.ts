@@ -1,7 +1,6 @@
 interface Spot {
     isAvailable: boolean,
-    spot: Vehicle | null,
-    vehicleId: string,
+    spaces: Map<number, number>,
 }
 
 class Garage {
@@ -10,18 +9,26 @@ class Garage {
     constructor() {
         this.#spot = {
             isAvailable: true,
-            spot: null,
-            vehicleId: "noID",
+            spaces: new Map([[0, 100]]),
         }
     }
 
-    parkVehicle(vehicle: Vehicle): Vehicle | void {
+    parkVehicle(vehicle: Vehicle, length: number): Vehicle | void {
         if(this.#spot.isAvailable) {
-            this.#spot.isAvailable = false;
-            this.#spot.spot = vehicle;
-            this.#spot.vehicleId = vehicle.getVehicleId();
-            console.log(`${vehicle} is parked.`)
-            return vehicle;
+            const iterator: IterableIterator<[number, number]> = this.#spot.spaces.entries();
+            let current: number[] = iterator.next().value;
+            let flag: boolean = true;
+            while(flag) {
+                if(!current[1] || current[0] !== 0) {
+                    flag = false;
+                } else {
+                    if(current[1] < length) {
+                        current = iterator.next().value;
+                    } else {
+                        this.#spot.spaces
+                    }
+                }
+            }
         } else {
             console.log('No available spot.');
             return;
@@ -38,6 +45,14 @@ class Garage {
             console.log('Un-authorized user.');
             return;
         }
+    }
+
+    checkAvailability(): void {
+        if(this.#spot.spaces.size === 0) {
+            this.#spot.isAvailable = false;
+        } 
+
+        return;
     }
 
 }   

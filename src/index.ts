@@ -18,6 +18,7 @@ class Garage {
             const iterator: IterableIterator<[number, number]> = this.#spot.spaces.entries();
             let current: number[] = iterator.next().value;
             let flag: boolean = true;
+            let dummy: number[] = [];
             while(flag) {
                 if(!current[1] || current[0] !== 0) {
                     flag = false;
@@ -25,7 +26,8 @@ class Garage {
                     if(current[1] < length) {
                         current = iterator.next().value;
                     } else {
-                        this.#spot.spaces
+                        dummy = current;
+                        this.#spot.spaces.set(current[0] + 1, )
                     }
                 }
             }

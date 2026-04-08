@@ -15,5 +15,5 @@ This line of command creates a tsconfig.json file which in you can change enviro
     "noEmitOnError": true // do not map ts files if there is an error
     "removeComments": true // remove commentlines while mapping
     "sourceMap": true // Creates TS code map to the generated JS files. IMPORTANT for debugging
-    "noImplicitAny": true // Turns off variable errors that has no type. -- NOT RECOMMENDED - NEVER USE by Kitsu
+    "noImplicitAny": true // Not allowed to assign type 'any' if there is not assigned type for anything.
 ```
